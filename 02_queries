@@ -1,0 +1,118 @@
+# 1. Mostrare tutto il contenuto della tabella.
+SELECT * FROM opere;
+
+# Mostrare solo il contenuto di alcune colonne della tabella.
+SELECT data_uscita, id_scrittore
+FROM opere;
+
+# 2. FILTRARE (LOGICA SEMPLICE)
+# Trova le opere che sono state pubblicate dopo il 1900.
+SELECT * FROM opere
+WHERE data_uscita > 1900;
+
+# =======================
+#  3. OPERATORI BOOLEANI
+# =======================
+# ==> AND
+# Trova tutte le opere scritte dopo il 1900 dall'autore con
+# id scrittore 12.
+SELECT * FROM opere
+WHERE data_uscita > 1900
+AND id_scrittore = 12;
+
+# ==> OR
+# Trova gli scrittori che hanno nazionalità
+# italiana o francese.
+SELECT * FROM scrittori
+WHERE nazionalita = 'Italiana'
+OR nazionalita = 'Francese';
+
+# ==> NOT
+# Trova gli scrittori che NON hanno nazionalità italiana.
+SELECT * FROM scrittori
+WHERE NOT nazionalita = 'Italiana';
+
+# ====================
+#  4. Filtri avanzati
+# ====================
+# Trova le opere scritte tra il 1600 e il 1800.
+SELECT * FROM opere
+WHERE data_uscita BETWEEN 1600 AND 1800;
+
+# Trova gli scrittori che hanno nazionalità italiana o francese.
+SELECT * FROM scrittori
+WHERE nazionalita IN ('Italiana', 'Francese');
+# Confronta l'operatore IN con l'operatore OR.
+
+# ===============================
+#  5. LIKE - Match di un pattern 
+# ===============================
+# 	Like serve a individuare un testo che segue un pattern, 
+#   non una stringa esatta, come fatto in precedenza.
+
+#   %  ->  indica qualsiasi numero di caratteri (anche Zero)
+#   _  ->  indica esattamente un carattere
+
+# ==> Trova gli scrittori, i cui cognomi cominciano con la lettera 'C'.
+SELECT * FROM scrittori
+WHERE cognome LIKE 'C%';
+
+# ==> Trova gli scrittori, i cui cognomi finiscono con la lettera 'e'.
+SELECT * FROM scrittori
+WHERE cognome LIKE '%e';
+
+# ==> Trova gli scrittori, i cui cognomi hanno lunghezza di 5 lettere.
+SELECT * FROM scrittori
+WHERE cognome LIKE '_____';
+
+# ==> Trova gli scrittori, i cui cognomi iniziano per 'I' e hanno 5 lettere.
+SELECT * FROM scrittori
+WHERE cognome LIKE 'I____';
+
+# ==> Trova gli scrittori, i cui cognomi hanno 'a' come seconda lettera.
+SELECT * FROM scrittori
+WHERE cognome LIKE '_a%';
+
+# ==> Trova gli scrittori, i cui cognomi che NON iniziano con 'R'.
+SELECT * FROM scrittori
+WHERE cognome NOT LIKE 'R%';
+
+# ==============
+#  6. ORDER BY 
+# ==============
+# Visualizza gli scrittori in base ai cognomi in ordine alfabetico CRESCENTE.
+SELECT * FROM scrittori
+ORDER BY cognome ASC;
+
+# Visualizza le opere in base alla data di uscita in ordine DECRESCENTE.
+SELECT * FROM opere
+ORDER BY data_uscita DESC;
+
+# =========================================================
+#  7. Funzione di Aggregazione (AVG, SUM, COUNT, MIN, MAX)
+# =========================================================
+# Conta il n° totale di opere
+SELECT COUNT(*) FROM opere;
+SELECT COUNT(*) AS tot_opere FROM opere;
+
+# Calcola il n° di scrittori per nazionalità
+SELECT nazionalita, COUNT(*) FROM scrittori
+GROUP BY nazionalita;
+
+# Calcola la media dei costi di tutte le rappresentazioni (poco utile).
+SELECT AVG(prezzo) FROM rappresentazioni;
+
+# Calcola la media dei costi per ciascun teatro.
+SELECT id_teatro, AVG(prezzo) FROM rappresentazioni
+GROUP BY id_teatro;
+# Esigenza: non vediamo il nome associato all' id_teatro; 
+# successivamente scopriremo come vederli
+
+# Per opera, calcoliamo la media dei costi in generale.
+SELECT id_opera, AVG(prezzo) AS MEDIA FROM rappresentazioni
+GROUP BY id_opera;
+
+# Mostrami gli ID delle rappresentazioni e la loro media solo se maggiore o uguale a 40.
+SELECT id_rappresentazione, AVG(prezzo) AS MEDIA FROM rappresentazioni
+GROUP BY id_rappresentazione
+HAVING AVG(prezzo) >= 40;
