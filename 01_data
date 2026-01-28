@@ -1,0 +1,58 @@
+INSERT INTO scrittori VALUES
+(1,'Luigi','Pirandello','Italiana'),
+(2,'Eduardo','De Filippo','Italiana'),
+(3,'William','Shakespeare','Inglese'),
+(4,'Carlo','Goldoni','Italiana'),
+(5,'Anton','Cechov','Russa'),
+(6,'Molière',NULL,'Francese'),
+(7,'Dario','Fo','Italiana'),
+(8,'Henrik','Ibsen','Norvegese'),
+(9,'Samuel','Beckett','Irlandese'),
+(10,'Jean-Paul','Sartre','Francese'),
+(11,'Federico','García Lorca','Spagnola'),
+(12,'Arthur','Miller','Statunitense');
+
+INSERT INTO opere VALUES
+(1,"Sei personaggi in cerca d'autore",'1921-05-09',1),
+(2,'Filumena Marturano','1946-10-01',2),
+(3,'Amleto','1603-01-01',3),
+(4,'La locandiera','1753-01-01',4),
+(5,'Il giardino dei ciliegi','1904-01-17',5),
+(6,'Il malato immaginario','1673-02-10',6),
+(7,'Morte accidentale di un anarchico','1970-12-10',7),
+(8,'Casa di bambola','1879-12-21',8),
+(9,'Aspettando Godot','1953-01-05',9),
+(10,'A porte chiuse','1944-05-27',10),
+(11,'La casa di Bernarda Alba','1945-03-08',11),
+(12,'Morte di un commesso viaggiatore','1949-02-10',12),
+(13,'Il crogiuolo','1953-01-22',12);
+
+INSERT INTO teatri VALUES
+(1,'Teatro Valle','Roma','Italia'),
+(2,'Teatro San Carlo','Napoli','Italia'),
+(3,'Globe Theatre','Londra','Regno Unito'),
+(4,'Teatro Goldoni','Venezia','Italia'),
+(5,'Teatro alla Scala','Milano','Italia'),
+(6,'Comédie-Française','Parigi','Francia'),
+(7,'Abbey Theatre','Dublino','Irlanda'),
+(8,'Teatro Argentina','Roma','Italia'),
+(9,'Teatro Nacional María Guerrero','Madrid','Spagna');
+
+INSERT INTO rappresentazioni VALUES
+(1,1,1,'1921-05-09'),
+(2,2,2,'1946-12-04'),
+(3,3,3,'1603-07-26'),
+(4,4,4,'1753-12-26'),
+(5,1,2,'1922-03-15'),
+(6,3,2,'1610-05-01'),
+(7,5,5,'1904-01-17'),
+(8,9,7,'1953-01-05');
+
+UPDATE rappresentazioni SET prezzo = 25.00 WHERE id_rappresentazione = 1;
+UPDATE rappresentazioni SET prezzo = 30.00 WHERE id_rappresentazione = 2;
+UPDATE rappresentazioni SET prezzo = 35.00 WHERE id_rappresentazione = 3;
+UPDATE rappresentazioni SET prezzo = 40.00 WHERE id_rappresentazione = 4;
+UPDATE rappresentazioni SET prezzo = 45.00 WHERE id_rappresentazione = 5;
+UPDATE rappresentazioni SET prezzo = 50.00 WHERE id_rappresentazione = 6;
+UPDATE rappresentazioni SET prezzo = 55.00 WHERE id_rappresentazione = 7;
+UPDATE rappresentazioni SET prezzo = 60.00 WHERE id_rappresentazione = 8;
